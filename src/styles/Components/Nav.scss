@@ -1,0 +1,9 @@
+.nav{
+  margin: 30px 10px;
+  &__stack{
+    overflow-x: scroll;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+}

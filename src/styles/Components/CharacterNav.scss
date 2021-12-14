@@ -1,0 +1,11 @@
+.character{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  &__name{
+    color: white;
+    text-align: center;
+  }
+}

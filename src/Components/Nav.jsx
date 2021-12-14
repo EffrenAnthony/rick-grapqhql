@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client'
 import { useRickAppContext } from '../context';
 import { GET_CHARACTERS } from '../Graphql/queries';
+import CharacterNav from './CharacterNav';
+import Stack from '@mui/material/Stack';
+import Loader from '../common/Loader';
+import ErrorAlert from '../common/ErrorAlert';
 // import { RickAppContext } from '../context';
 const Nav = () => {
   // const value = useContext(RickAppContext)
@@ -45,17 +49,19 @@ const Nav = () => {
   }
 
   // console.log(data);
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error</div>
+  if (loading) return <Loader />
+  if (error) return <ErrorAlert />
   return (
-    <div>
-      {
-        state.characters.map((character, key) => (
-          <div onClick={() => setCharacter(character)} key={key}>
-            {character.name}
-          </div>
-        ))
-      }
+    <div className="nav">
+      <Stack direction="row" spacing={2} className="nav__stack">
+        {
+          state.characters.map((character, key) => (
+            <div onClick={() => setCharacter(character)} key={key}>
+              <CharacterNav {...character}></CharacterNav>
+            </div>
+          ))
+        }
+      </Stack>
     </div>
   );
 };
